@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 buffer.append("Phone: " + result.getString(2)+"\n");
                 buffer.append("Address: " + result.getString(3)+"\n\n");
             }
-            Log.d("MyContactApp", "MainActivity: the name is " + nameNull);
         }
 
         if(buffer.length() == 0)
