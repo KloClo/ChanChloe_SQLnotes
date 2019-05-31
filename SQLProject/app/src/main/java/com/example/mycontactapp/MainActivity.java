@@ -80,22 +80,31 @@ public class MainActivity extends AppCompatActivity {
 
         StringBuffer buffer = new StringBuffer();
         while(result.moveToNext()){
-            //Append res columns to the buffer - see StringBuffer and Cursor api
-            if((result.getString(1).contains(editName.getText().toString()) && result.getString(1) != null) ||
-                    (result.getString(2).contains(editPhone.getText().toString()) && result.getString(2) != null) ||
-                    (result.getString(3).contains(editAddress.getText().toString()) && result.getString(3) != null))
+            //Check each field if null
+            boolean nameNull = false;
+            boolean phoneNull = false;
+            boolean addressNull = false;
+
+            if(editName.getText().toString().equals("")) nameNull = true;
+            if(editPhone.getText().toString().equals("")) phoneNull = true;
+            if(editAddress.getText().toString().equals("")) addressNull = true;
+
+
+            if((result.getString(1).equals(editName.getText().toString()) || nameNull) &&
+                    (result.getString(2).equals(editPhone.getText().toString()) || phoneNull) &&
+                    (result.getString(3).equals(editAddress.getText().toString()) || addressNull))
             {
                 buffer.append("ID: " + result.getString(0)+"\n");
                 buffer.append("Name: " + result.getString(1)+"\n");
                 buffer.append("Phone: " + result.getString(2)+"\n");
                 buffer.append("Address: " + result.getString(3)+"\n\n");
             }
-
+            Log.d("MyContactApp", "MainActivity: the name is " + nameNull);
         }
 
-        if(buffer.toString().equals(null))
+        if(buffer.length() == 0)
         {
-            showMessage("No Search Query", "Please enter a search query");
+            showMessage("No Search Found", "Please enter a valid query");
             return;
         }
 
