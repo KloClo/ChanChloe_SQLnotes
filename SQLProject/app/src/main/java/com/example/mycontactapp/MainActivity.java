@@ -40,10 +40,15 @@ public class MainActivity extends AppCompatActivity {
 
         if(isInserted){
             Toast.makeText(MainActivity.this, "SUCCESS - contact inserted", Toast.LENGTH_LONG).show();
+
+            editName.setText("");
+            editAddress.setText("");
+            editPhone.setText("");
         }
         else{
             Toast.makeText(MainActivity.this, "FAILED - contact not inserted", Toast.LENGTH_LONG).show();
         }
+
     }
 
     public void viewData(View view){
